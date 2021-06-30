@@ -65,12 +65,13 @@ function App() {
           <Route path={ROUTES.CONTACTS}>
             <ContactsPage props={{
               contacts: contacts,
-              addContact: contacts
+              addContact: addContact
             }}/>
           </Route>
           <Route path={ROUTES.APPOINTMENTS}>
             <AppointmentsPage props={{
               appointments: appointments,
+              contacts: contacts,
               addAppointment: addAppointment
             }}/>
           </Route>
