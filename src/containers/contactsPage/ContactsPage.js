@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {ContactForm} from '../../components/contactForm/ContactForm'
 
 export const ContactsPage = (props) => {
   /*
@@ -16,7 +17,7 @@ export const ContactsPage = (props) => {
       setDuplicate(() => false)
     } else {
       setDuplicate(() => {
-        const check = props.contacts.some(contact = contact.name === name)//if a single one of the contacts matches we will return true for duplicate
+        const check = props.contacts.some(contact => contact.name === name)//if a single one of the contacts matches we will return true for duplicate
         return check;
       })
     } 
@@ -53,6 +54,16 @@ export const ContactsPage = (props) => {
     <div>
       <section>
         <h2>Add Contact</h2> 
+        <ContactForm 
+        props={{
+          name: name,
+          phone: phone,
+          email: email,
+          handleNameChange: handleNameChange,
+          handlePhoneChange: handlePhoneChange,
+          handleEmailChange: handleEmailChange,
+          handleSubmit: handleSubmit
+      }} />
       </section>
       <hr />
       <section>
