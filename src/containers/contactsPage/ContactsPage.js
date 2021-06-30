@@ -22,12 +22,26 @@ export const ContactsPage = (props) => {
     } 
   }, [name])//check if name gets changed
 
+  //updating our states
+  const handleNameChange = e => setName(() => e.target.value)
+  const handlePhoneChange = e => setPhone(() => e.target.value)
+  const handleEmailChange = e => setEmail(() => e.target.value)
+
   const handleSubmit = (e) => {
     e.preventDefault();
     /*
     Add contact info and clear data
     if the contact name is not a duplicate
     */
+    
+    if(!duplicate) {
+      props.addContact(name, phone, email);
+
+      setName(() => "name")
+      setPhone(() => "phone")
+      setEmail(() => "email")
+      setDuplicate(() => false)
+    }
   };
 
   /*
