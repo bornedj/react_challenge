@@ -1,12 +1,12 @@
 import React from "react";
 
-export const ContactForm = (props) => {
+export const ContactForm = ({props}) => {
   return (
     <form onSubmit={props.handleSubmit}>
-      <input type="text">{props.name}</input>
-      <input type="tel">{props.phone}</input>
-      <input type="email">{props.email}</input>
-      <input type="submit"></input>
+      <input type="text" value={props.name} onChange={e => props.setName(e.target.value)} />
+      <input type="tel" value={props.phone} onChange={e => props.setPhone(e.target.value)} />
+      <input type="email" value={props.email} onChange={e => props.setEmail(e.target.value)} />
+      <input type="submit" value="submit" />
     </form>
-  );
-};
+  )
+} 

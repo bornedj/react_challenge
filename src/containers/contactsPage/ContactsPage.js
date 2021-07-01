@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import {ContactForm} from '../../components/contactForm/ContactForm'
+import { TileList } from "../../components/tileList/TileList";
 
-export const ContactsPage = (props) => {
+export const ContactsPage = ({props}) => {
   /*
   Define state variables for 
   contact info and duplicate check
   */
 
-  const [name, setName] = useState("name");
-  const [phone, setPhone] = useState("phone")
-  const [email, setEmail] = useState("email");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("")
+  const [email, setEmail] = useState("");
   const [duplicate, setDuplicate] = useState(false);
 
   useEffect(() => {
@@ -23,11 +24,6 @@ export const ContactsPage = (props) => {
     } 
   }, [name])//check if name gets changed
 
-  //updating our states
-  const handleNameChange = e => setName(() => e.target.value)
-  const handlePhoneChange = e => setPhone(() => e.target.value)
-  const handleEmailChange = e => setEmail(() => e.target.value)
-
   const handleSubmit = (e) => {
     e.preventDefault();
     /*
@@ -38,9 +34,9 @@ export const ContactsPage = (props) => {
     if(!duplicate) {
       props.addContact(name, phone, email);
 
-      setName(() => "name")
-      setPhone(() => "phone")
-      setEmail(() => "email")
+      setName(() => "")
+      setPhone(() => "")
+      setEmail(() => "")
       setDuplicate(() => false)
     }
   };
@@ -54,20 +50,20 @@ export const ContactsPage = (props) => {
     <div>
       <section>
         <h2>Add Contact</h2> 
-        <ContactForm 
-        props={{
+        <ContactForm props={{
           name: name,
           phone: phone,
           email: email,
-          handleNameChange: handleNameChange,
-          handlePhoneChange: handlePhoneChange,
-          handleEmailChange: handleEmailChange,
+          setName: setName,
+          setPhone: setPhone,
+          setEmail: setEmail,
           handleSubmit: handleSubmit
       }} />
       </section>
       <hr />
       <section>
         <h2>Contacts</h2>
+        <TileList props={props.contacts} />
       </section>
     </div>
   );
